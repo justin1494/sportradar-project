@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Table from "./components/Table";
+import TableComponent from "./components/Table";
+
 
 function App() {
 	const [data, setData] = useState(null);
@@ -27,7 +28,7 @@ function App() {
 				setLoading(false);
 			});
 	}, []);
-	return <Table data={data} loading={loading} error={error} />;
+	return <TableComponent data={data} loading={loading} error={error} />;
 }
 
 export default App;
