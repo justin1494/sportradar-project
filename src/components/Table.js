@@ -1,14 +1,17 @@
-import React from "react";
-import { Table } from "react-bootstrap";
-import { checkWinner } from "../helpers/helpers";
+import React, { useContext } from "react";
+import Table from "react-bootstrap/Table";
+import Loading from "components/Loading";
+import { Context } from "components/Context";
+import { changeTeamColor } from "helpers/helpers";
 
-export default function TableComponent({ data, loading, error }) {
+export default function TableComponent() {
+	const { data, loading, error } = useContext(Context);
+
 	return (
 		<>
-			{loading && <div>A moment please...</div>}
-			{error && (
-				<div>{`There is a problem fetching the post data - ${error}`}</div>
-			)}
+			{loading && <Loading />}
+			{error && <div data-testid="error">{error}</div>}
+
 			{data && (
 				<Table bordered hover>
 					<thead>
@@ -27,8 +30,10 @@ export default function TableComponent({ data, loading, error }) {
 								{match.teams.map((team) => (
 									<td
 										key={team.id}
-										// Nazwa checkWinner nijak ma sie do tego co robi, czyli zwracanie nazwy klasy dla zespolu zaleznie od wyniku
-										className={checkWinner(team, match)}>
+										className={changeTeamColor(
+											team,
+											match
+										)}>
 										{team.name}
 									</td>
 								))}

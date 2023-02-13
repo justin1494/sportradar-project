@@ -54,7 +54,7 @@ export const changeEventTime = (event) => {
 	return `${hours}:${minutes}:${seconds}`;
 };
 
-export const checkWinner = (team, event) => {
+export const changeTeamColor = (team, event) => {
 	// cheks if the match has valid score
 	if (!event.isValid) {
 		return "bg-light-subtle";
