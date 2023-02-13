@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TableComponent from "./components/Table";
-
+import { getMatchDetails } from "./helpers/helpers";
 
 function App() {
 	const [data, setData] = useState(null);
@@ -17,7 +17,13 @@ function App() {
 						`This is an HTTP error: The status is ${response.status}`
 					);
 				}
-				const data = await response.json();
+				const responseJson = await response.json();
+
+				const adaptedSchedules = responseJson.schedules.map(
+					(schedule) => getMatchDetails(schedule)
+				);
+
+				const data = { ...responseJson, schedules: adaptedSchedules };
 				setData(data);
 			})
 			.catch((err) => {

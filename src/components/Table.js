@@ -1,20 +1,6 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-
-export const getCompetitorsNames = (sportEvent) => {
-	const competitors = sportEvent.competitors.map(
-		(competitor) => competitor.name
-	);
-	return competitors.join(" - ");
-};
-
-export const getScore = (sportEventStatus) => {
-	// checks if the score is valind number, otherwise it may be posponed or delayed or other.
-	if (typeof sportEventStatus.home_score === "number") {
-		return `${sportEventStatus.home_score} : ${sportEventStatus.away_score}`;
-	}
-	return sportEventStatus.status;
-};
+import { checkWinner } from "../helpers/helpers";
 
 export default function TableComponent({ data, loading, error }) {
 	return (
@@ -27,17 +13,29 @@ export default function TableComponent({ data, loading, error }) {
 				<Table bordered hover>
 					<thead>
 						<tr>
-							<th scope="col">TEAMS (HOME - AWAY)</th>
-							<th scope="col">SCORE (HOME - AWAY)</th>
+							<th scope="col">Home team</th>
+							<th scope="col">Away team</th>
+							<th scope="col">Match date</th>
+							<th scope="col">Half-time score</th>
+							<th scope="col">Score</th>
+							<th scope="col">Stadium</th>
 						</tr>
 					</thead>
 					<tbody>
 						{data.schedules.map((match) => (
-							<tr key={match.sport_event.id}>
-								<td>
-									{getCompetitorsNames(match.sport_event)}
-								</td>
-								<td>{getScore(match.sport_event_status)}</td>
+							<tr key={match.id}>
+								{match.teams.map((team) => (
+									<td
+										key={team.id}
+										// Nazwa checkWinner nijak ma sie do tego co robi, czyli zwracanie nazwy klasy dla zespolu zaleznie od wyniku
+										className={checkWinner(team, match)}>
+										{team.name}
+									</td>
+								))}
+								<td>{match.date}</td>
+								<td>{match.periodScore}</td>
+								<td>{match.score}</td>
+								<td>{match.stadium}</td>
 							</tr>
 						))}
 					</tbody>
