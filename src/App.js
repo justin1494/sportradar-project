@@ -11,11 +11,12 @@ function App() {
 	const [error, setError] = useState(null);
 	const [seasonsData, setSeasonsData] = useState(null);
 	const [displayedSeason, setDisplayedSeason] = useState(null);
+	const [searchableData, setSearchableData] = useState(null);
 
 	useEffect(() => {
 		setLoading(true);
 		fetch(
-			`http://localhost:3001/pipe/https://api.sportradar.us/soccer/trial/v4/en/competitions/sr:competition:202/seasons.json?api_key=${process.env.REACT_APP_API_URL}`
+			`http://localhost:3005/pipe/https://api.sportradar.us/soccer/trial/v4/en/competitions/sr:competition:202/seasons.json?api_key=${process.env.REACT_APP_API_URL}`
 		)
 			.then(async (response) => {
 				if (!response.ok) {
@@ -37,7 +38,7 @@ function App() {
 		if (displayedSeason) {
 			setLoading(true);
 			fetch(
-				`http://localhost:3001/pipe/https://api.sportradar.us/soccer/trial/v4/en/seasons/${displayedSeason.id}/schedules.json?api_key=${process.env.REACT_APP_API_URL}`
+				`http://localhost:3005/pipe/https://api.sportradar.us/soccer/trial/v4/en/seasons/${displayedSeason.id}/schedules.json?api_key=${process.env.REACT_APP_API_URL}`
 			)
 				.then(async (response) => {
 					if (!response.ok) {
@@ -55,7 +56,9 @@ function App() {
 						...responseJson,
 						schedules: adaptedSchedules,
 					};
+
 					setData(data);
+					setSearchableData(data);
 					setError(null);
 				})
 				.catch((err) => {
@@ -70,11 +73,14 @@ function App() {
 
 	const contextValue = {
 		data,
+		setData,
 		loading,
 		error,
 		seasonsData,
 		setDisplayedSeason,
 		displayedSeason,
+		searchableData,
+		setSearchableData,
 	};
 
 	return (

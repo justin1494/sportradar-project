@@ -80,4 +80,5 @@ export const getMatchDetails = (event) => ({
 	winnerId: event.sport_event_status.winner_id,
 	id: event.sport_event.id,
 	timeline: event.timeline,
+	statistics: event.statistics?.totals.competitors,
 });
