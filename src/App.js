@@ -1,15 +1,17 @@
 import { Context } from "components/Context";
 import HomepageComponent from "components/Homepage";
+import MatchDetails from "components/MatchDetails";
 import { getMatchDetails } from "helpers/helpers";
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-	// mozna doprecyzować nazwy data i seasonsData, bo w sumie to seasonsData moze trzymać informacje o wynikach meczy w danym sezonie
 	const [data, setData] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [seasonsData, setSeasonsData] = useState(null);
 	const [displayedSeason, setDisplayedSeason] = useState(null);
+
 	useEffect(() => {
 		setLoading(true);
 		fetch(
@@ -77,7 +79,12 @@ function App() {
 
 	return (
 		<Context.Provider value={contextValue}>
-			<div className="mx-3">{<HomepageComponent />}</div>
+			<div className="p-3">
+				<Routes>
+					<Route index element={<HomepageComponent />} />
+					<Route path=":matchId" element={<MatchDetails />} />
+				</Routes>
+			</div>
 		</Context.Provider>
 	);
 }

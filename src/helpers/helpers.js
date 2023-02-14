@@ -79,4 +79,5 @@ export const getMatchDetails = (event) => ({
 	isTie: event.sport_event_status.match_tie,
 	winnerId: event.sport_event_status.winner_id,
 	id: event.sport_event.id,
+	timeline: event.timeline,
 });
