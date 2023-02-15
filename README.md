@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Sportradar Coding Academy coding task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hi!
+My name is Marcin and this is the coding task for the sportradar internship.
 
-## Available Scripts
+## HOW it works?
 
-In the project directory, you can run:
+As the Sportradar API is a B2B API, I was getting a CORS error when trying to fetch the data. To handle that, I used a proxy server (since I am not that fluent in making such programs, I used [GoBeteen app from pwalsh's gitHub](https://github.com/okfn/gobetween)).
 
-### `npm start`
+## Getting started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In order to start the app, you have to:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. In the app root folder, make a .env file and type inside:
 
-### `npm test`
+```Javascript
+REACT_APP_API_URL='{key was provided in e-mail}'
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Go to the /server directory and execute two commands:
 
-### `npm run build`
+```Javascript
+$ npm install --legacy-peer-deps
+$ npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You should get the prompt:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```Javascript
+Serving from port 3005
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This starts the proxy server.
 
-### `npm run eject`
+3. Open new terminal window and in root directiory of the app execute two commands:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```Javascript
+$ npm install
+$ npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This will start the app (default under the 3000 port)..
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Now the app should run.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Additional features
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I have added some additional features, such as a search bar to search through the fetched table. Due to a lack of time, I was unable to add more options, but I have been thinking about them. As further options, you could add filters to the table, such as match date, match result, win, loss, etc. For the match subpage, you could fetch data about every player (based on their ID) and display their number, position, and so on.
