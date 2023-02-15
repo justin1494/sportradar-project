@@ -7,8 +7,8 @@ import { changeTeamColor } from "helpers/helpers";
 
 export default function TableComponent() {
 	const { data, loading, error, setSearchableData, searchableData } =
-		useContext(Context);
-
+	useContext(Context);
+	
 	const searchForTeam = (e) => {
 		setSearchableData({
 			...data,

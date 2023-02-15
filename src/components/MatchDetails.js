@@ -70,7 +70,7 @@ export default function MatchDetails() {
 				<Row className="h4 animate__animated animate__fadeIn mb-4">
 					<Col className="text-center">{matchInfo.date}</Col>
 				</Row>
-				{/* if the match is not valid it will display why ('postponed') */}
+				{/* if the match is not valid it will display why (for example - 'postponed') */}
 				{!matchInfo.isValid && (
 					<Row className="h2 my-5">
 						<Col className="text-center">

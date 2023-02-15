@@ -1,6 +1,7 @@
 import { Context } from "components/Context";
 import HomepageComponent from "components/Homepage";
 import MatchDetails from "components/MatchDetails";
+import ScrollToTop from "components/ScrollToTop";
 import { getMatchDetails } from "helpers/helpers";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
@@ -85,6 +86,7 @@ function App() {
 
 	return (
 		<Context.Provider value={contextValue}>
+			<ScrollToTop />
 			<div className="p-3">
 				<Routes>
 					<Route index element={<HomepageComponent />} />

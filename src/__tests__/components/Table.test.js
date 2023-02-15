@@ -3,16 +3,18 @@ import { render, screen } from "@testing-library/react";
 import TableComponent from "components/Table";
 import { Context } from "components/Context";
 
+
 const mockedNavigate = jest.fn();
 jest.mock("react-router-dom", () => ({
 	...jest.requireActual("react-router-dom"),
 	useNavigate: () => mockedNavigate,
 }));
 
+
 describe("TableComponent", () => {
 	it("renders loading component when loading is true", () => {
 		const contextValue = {
-			data: null,
+			searchableData: null,
 			loading: true,
 			error: null,
 		};
@@ -27,7 +29,7 @@ describe("TableComponent", () => {
 
 	it("renders error message when error is present", () => {
 		const contextValue = {
-			data: null,
+			searchableData: null,
 			loading: false,
 			error: "There was a problem fetching the data",
 		};
@@ -42,7 +44,7 @@ describe("TableComponent", () => {
 
 	it("renders table with match details when data is present", () => {
 		const contextValue = {
-			data: {
+			searchableData: {
 				schedules: [
 					{
 						date: "02.01.2023",
